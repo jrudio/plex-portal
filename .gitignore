@@ -3,3 +3,5 @@
 *.sublime-workspace
 dump
 settings.json
+.meteor/local
+.meteor/meteorite
