@@ -10,7 +10,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{{pathFor 'home'}}">Project Title</a>
+        <a class="navbar-brand" href="{{pathFor 'home'}}">Plex Portal</a>
       </div>
 
       <div class="collapse navbar-collapse" id="main-nav">
@@ -35,6 +35,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="{{ isActiveRoute regex='home' }}"><a href="{{ pathFor 'home' }}"><i class="fa fa-home"></i> Home</a></li>
           <li class="{{ isActiveRoute regex='dashboard' }}"><a href="{{ pathFor 'dashboard' }}"><i class="fa fa-gear"></i> Dashboard</a></li>
+          <li class="{{ isActiveRoute regex='servers' }}"><a href="{{ pathFor 'servers' }}"><i class="fa fa-server"></i> Servers</a></li>
         </ul>
       </div>
 

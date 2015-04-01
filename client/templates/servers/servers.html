@@ -1,0 +1,24 @@
+<template name="servers">
+  <div class="server-user-request">
+    {{ > quickForm collection="PlexCustomers" meteormethod="requestAccess" id="insertServerRequest" type="method" }}
+  </div> <!-- server request -->
+  <div>
+    <h5>Plex Servers</h5>
+    <ul class="bg-info">
+      {{ #each plexCustomers }}
+        <li>User: {{ userId }} - {{ accessTime }} - {{ rate }}</li>
+      {{ /each }}
+    </ul>
+  </div> <!-- Customer info -->
+  <div>
+    <ol>
+      <li>Sample Server - $5 / month</li>
+      {{ #each server }}
+        <li>
+          {{ decPostTitle }} - ${{ rate }} for {{ accessTime }}/{{ convertAccessType }}
+          <button class="btn btn-danger btn-sm stripe-button">Buy Access</button>
+        </li>
+      {{ /each }}
+    </ol>
+  </div> <!-- Server listing -->
+</template>
