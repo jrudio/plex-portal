@@ -25,5 +25,8 @@ Meteor.methods({
     console.dir(fields);
 
     return Servers.insert(fields) ? true : false;
+  },
+  generateServer: function(){
+    return Factory.create('server');
   }
 });

@@ -12,5 +12,5 @@ Router.route('/orders', {
 });
 
 Router.plugin('ensureSignedIn', {
-  only: ['dashboard']
+  only: ['orders']
 });

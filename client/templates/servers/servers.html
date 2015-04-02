@@ -1,18 +1,21 @@
 <template name="servers">
-  {{!-- Modal --}}
-  <div class="add-server">
-    {{> add_server_prompt }}
-  </div>
-
   {{!-- Left Side - Server List --}}
   <div class="col-xs-5">
-    <ol class="list-group">
+    <div class="list-group">
+      <div class="list-group-item">
+        {{!-- Modal --}}
+        {{ #if currentUser }}
+          <div class="add-server">
+            {{> add_server_prompt }}
+          </div>
+        {{/if}}
+      </div>
       {{ #each server }}
-        <li class="list-group-item">
-          <button class="btn btn-info btn-sm get-server-info">{{ decodeString postTitle }} - ${{ rateToDollar rate }} for {{ accessTime }}/{{ convertAccessType }}</button>
-        </li>
+        <a class="list-group-item get-server-info {{ isActiveRoute regex=this._id className="bg-success" }}" href="">
+         {{ decodeString postTitle }} - ${{ rateToDollar rate }} for {{ accessTime }}/{{ convertAccessType }}
+        </a>
       {{ /each }}
-    </ol>
+    </div>
   </div> {{!-- Server listing --}}
 
   {{!-- Right Side - Selected Server Info --}}
@@ -31,7 +34,11 @@
   <div>
     Created At: {{ createdAt }}
   </div>
-  <button class="btn btn-success btn-sm stripe-button">Buy Access</button>
+    {{ #if currentUser }}
+      <button class="btn btn-success btn-sm stripe-button">Buy Access</button>
+    {{ else }}
+      <p class="bg-warning">Please sign in to purchase</p>
+    {{ /if }}
   <div>
     ${{ rateToDollar rate }} for {{ accessTime }}/{{ convertAccessType accessTimeType }}
   </div>

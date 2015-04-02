@@ -8,12 +8,11 @@ Template.servers.helpers({
 });
 
 Template.servers.events({
-  'click button.get-server-info': function(e, t){
+  'click a.get-server-info': function(e, t){
     // e=event, t=template
     e.preventDefault();
 
     // Set session var to selected server
     Session.set('selectedServer', this);
-    console.log(this);
   }
 });

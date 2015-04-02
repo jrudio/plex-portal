@@ -18,7 +18,7 @@ Meteor.startup(function(){
       return _.random(1, 6);
     },
     rate: function(){ 
-      return _.random(2, 35);
+      return _.random(100, 1000);
     },
     currency: function(){
       return 'USD';

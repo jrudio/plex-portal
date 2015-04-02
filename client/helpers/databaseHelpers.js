@@ -24,3 +24,7 @@ Template.registerHelper('convertAccessType', function(accessType){
   };
   return accessType;
 });
+
+Template.registerHelper('rateToDollar', function(rate) {
+  return rate / 100;
+});
