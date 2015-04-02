@@ -1,24 +1,42 @@
 <template name="servers">
-  <div class="server-user-request">
-    {{ > quickForm collection="PlexCustomers" meteormethod="requestAccess" id="insertServerRequest" type="method" }}
-  </div> <!-- server request -->
-  <div>
-    <h5>Plex Servers</h5>
-    <ul class="bg-info">
-      {{ #each plexCustomers }}
-        <li>User: {{ userId }} - {{ accessTime }} - {{ rate }}</li>
-      {{ /each }}
-    </ul>
-  </div> <!-- Customer info -->
-  <div>
-    <ol>
-      <li>Sample Server - $5 / month</li>
+  {{!-- Modal --}}
+  <div class="add-server">
+    {{> add_server_prompt }}
+  </div>
+
+  {{!-- Left Side - Server List --}}
+  <div class="col-xs-5">
+    <ol class="list-group">
       {{ #each server }}
-        <li>
-          {{ decPostTitle }} - ${{ rate }} for {{ accessTime }}/{{ convertAccessType }}
-          <button class="btn btn-danger btn-sm stripe-button">Buy Access</button>
+        <li class="list-group-item">
+          <button class="btn btn-info btn-sm get-server-info">{{ decodeString postTitle }} - ${{ rateToDollar rate }} for {{ accessTime }}/{{ convertAccessType }}</button>
         </li>
       {{ /each }}
     </ol>
-  </div> <!-- Server listing -->
+  </div> {{!-- Server listing --}}
+
+  {{!-- Right Side - Selected Server Info --}}
+  <div class="col-xs-7">
+    {{ #with selectedServer }}
+      {{ > server_info }}
+    {{ /with }}
+  </div>
+</template>
+
+<template name="server_info">
+  <h3>Title: {{ decodeString this.postTitle }}</h3>
+  <div>
+    Owner: {{ serverOwner }}
+  </div>
+  <div>
+    Created At: {{ createdAt }}
+  </div>
+  <button class="btn btn-success btn-sm stripe-button">Buy Access</button>
+  <div>
+    ${{ rateToDollar rate }} for {{ accessTime }}/{{ convertAccessType accessTimeType }}
+  </div>
+  <h6>Description: </h6>
+  <p class="text-primary">
+    {{ decodeString postDescription }}
+  </p>
 </template>

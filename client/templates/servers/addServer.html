@@ -1,0 +1,29 @@
+<template name="add_server_prompt">
+  <button class="btn btn-md btn-primary" data-toggle="modal" data-target=".add-server-modal">List your server</button>
+  
+  <div class="modal fade add-server-modal" tabindex="-1" role="dialog" aria-labelledby="AddServerToList" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="AddServerToList">Add your server to the marketplace</h4>
+        </div> {{!-- modal-header --}}
+
+        <div class="modal-body" style="padding: 20px;">
+          {{!-- Modal Content --}}
+          {{ #autoForm collection="Servers" type="normal" validation="submitThenKeyup" id="insertServerRequest" }}
+            {{> afQuickField name="accessTime"}}
+            {{> afQuickField name="accessTimeType"}}
+            {{> afQuickField name="rate"}}
+            {{> afQuickField name="serverName"}}
+            {{> afQuickField name="postTitle"}}
+            {{> afQuickField name="postDescription"}}
+            <button type="submit" class="btn btn-primary submit-to-server">Submit</button>
+          {{ /autoForm }}
+        </div> {{!-- modal-body --}}
+
+      </div> {{!-- modal-content --}}
+    </div> {{!-- modal-dialog --}}
+  </div> {{!-- modal-fade --}}
+</template>

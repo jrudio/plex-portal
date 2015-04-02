@@ -10,12 +10,14 @@ var plexCustomersSchema = new SimpleSchema({
   serverId: {
     type: String,
     label: 'Id of requested server',
-    min: 17
+    min: 17,
+    optional: false
   },
   userId: {
     type: String,
     label: 'Id of user requesting server',
-    min: 17
+    min: 17,
+    optional: false
   },
   accessTime: {
     type: Number,
@@ -39,6 +41,7 @@ var plexCustomersSchema = new SimpleSchema({
   paymentSuccess: {
     type: Boolean,
     label: 'True/False: Stripe payment successful?',
+    optional: false
   },
   stripeEmail: {
     type: String,

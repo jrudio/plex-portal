@@ -1,6 +1,6 @@
 ServerController = AppController.extend({
   waitOn: function() {
-    return [Meteor.subscribe('servers'), Meteor.subscribe('plexCustomers')];
+    return Meteor.subscribe('servers');
   },
   data: function(){
     return {

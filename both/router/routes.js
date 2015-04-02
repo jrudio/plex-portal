@@ -7,8 +7,8 @@ Router.route('/servers', {
   controller: ServerController
 });
 
-Router.route('/dashboard', {
-  name: 'dashboard'
+Router.route('/orders', {
+  name: 'orders'
 });
 
 Router.plugin('ensureSignedIn', {
