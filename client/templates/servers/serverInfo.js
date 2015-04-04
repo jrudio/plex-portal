@@ -33,7 +33,6 @@ Template.server_info.events({
 Template.server_info.helpers({
   purchased: function(_id){
     // Return a boolean
-    console.log(_id);
     var currentUser = Meteor.userId();
     var currentServer = PlexCustomers.find({ $and: [{ userId: currentUser }, {serverId: _id}, { paymentSuccess: true }] }, { fields: { _id: 1 }});
     return currentServer.count() ? true : false;
