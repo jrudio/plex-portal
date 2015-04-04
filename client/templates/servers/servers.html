@@ -2,17 +2,19 @@
   {{!-- Left Side - Server List --}}
   <div class="col-xs-5">
     <div class="list-group">
-      <div class="list-group-item">
+      {{ #if currentUser }}
         {{!-- Modal --}}
-        {{ #if currentUser }}
+        <div class="list-group-item">
           <div class="add-server">
             {{> add_server_prompt }}
           </div>
-        {{/if}}
-      </div>
+        </div>
+      {{/if}}
+      {{!-- List Header --}}
+      <h4 class="list-group-item">Browse Servers</h4>
       {{ #each server }}
         <a class="list-group-item get-server-info {{ isActiveRoute regex=this._id className="bg-success" }}" href="">
-         {{ decodeString postTitle }} - ${{ rateToDollar rate }} for {{ accessTime }}/{{ convertAccessType }}
+         {{ decodeString postTitle }} - ${{ rateToDollar rate }} for {{ accessTime }}/{{ convertAccessType accessTimeType }}
         </a>
       {{ /each }}
     </div>
@@ -36,6 +38,9 @@
   </div>
     {{ #if currentUser }}
       <button class="btn btn-success btn-sm stripe-button">Buy Access</button>
+      {{#if purchased _id }}
+        You have purchased access to this server!
+      {{ /if }}
     {{ else }}
       <p class="bg-warning">Please sign in to purchase</p>
     {{ /if }}

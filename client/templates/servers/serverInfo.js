@@ -1,4 +1,3 @@
-
 Template.server_info.events({
   'click button.stripe-button': function(e, t){
     // e = event, t = template
@@ -28,5 +27,15 @@ Template.server_info.events({
       description: 'Access to ' + serverName + ' owned by ' + serverOwner,
       amount: rate
     });
+  }
+});
+
+Template.server_info.helpers({
+  purchased: function(_id){
+    // Return a boolean
+    console.log(_id);
+    var currentUser = Meteor.userId();
+    var currentServer = PlexCustomers.find({ $and: [{ userId: currentUser }, {serverId: _id}, { paymentSuccess: true }] }, { fields: { _id: 1 }});
+    return currentServer.count() ? true : false;
   }
 });
