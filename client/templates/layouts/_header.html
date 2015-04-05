@@ -34,7 +34,9 @@
 
         <ul class="nav navbar-nav navbar-right">
           <li class="{{ isActiveRoute regex='home' }}"><a href="{{ pathFor 'home' }}"><i class="fa fa-home"></i> Home</a></li>
-          <li class="{{ isActiveRoute regex='orders' }}"><a href="{{ pathFor 'orders' }}"><i class="fa fa-money"></i> Orders</a></li>
+          {{ #if currentUser }}
+            <li class="{{ isActiveRoute regex='orders' }}"><a href="{{ pathFor 'orders' }}"><i class="fa fa-money"></i> Orders</a></li>
+          {{ /if }}
           <li class="{{ isActiveRoute regex='servers' }}"><a href="{{ pathFor 'servers' }}"><i class="fa fa-server"></i> Servers</a></li>
         </ul>
       </div>
