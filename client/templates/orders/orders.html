@@ -1,13 +1,18 @@
 <template name="orders">
   <div class="template-dashboard">
     <div class="page-header">
-      <h1>{{ currentUsername }} Orders</h1>
+      <h1>{{ currentUsername }}'s Orders:</h1>
     </div>
-    <ul class="list-group">
-      {{#each orders}}
-        <li class="list-group-item">${{ rateToDollar rate }}/{{ accessTime }} {{ convertAccessType accessTimeType }} - Server: {{ serverId }} <span class="label label-default">Active</span></li>
-      {{/each}}
-    </ul>
+    {{!-- returning cursor which isn't a falsy value --}}
+    {{ #if orders }}
+      <ul class="list-group">
+          {{#each orders}}
+            <li class="list-group-item">${{ rateToDollar rate }}/{{ accessTime }} {{ convertAccessType accessTimeType }} - Server: {{ serverId }} <span class="label label-default">Active</span></li>
+          {{/each}}
+      </ul>
+    {{ else }}
+      <h5 class="bg-warning">You currently do not have any orders placed or active</h5>
+    {{ /if }}
 
   </div>
 </template>
