@@ -3,15 +3,14 @@
     <div class="page-header">
       <h1>{{ currentUsername }}'s Orders:</h1>
     </div>
-    {{!-- returning cursor which isn't a falsy value --}}
-    {{ #if orders }}
+    {{ #if hasOrders }}
       <ul class="list-group">
           {{#each orders}}
             <li class="list-group-item">${{ rateToDollar rate }}/{{ accessTime }} {{ convertAccessType accessTimeType }} - Server: {{ serverId }} <span class="label label-default">Active</span></li>
           {{/each}}
       </ul>
     {{ else }}
-      <h5 class="bg-warning">You currently do not have any orders placed or active</h5>
+      <h4 class="bg-warning screamer">You currently do not have any orders placed or active</h4>
     {{ /if }}
 
   </div>
