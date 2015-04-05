@@ -2,14 +2,24 @@ OrdersController = AppController.extend({
   waitOn: function() {
     return this.subscribe('plexCustomer');
   },
-  data: {
-    orders: PlexCustomers.find({}),
-    currentUsername: function(){
-      return Meteor.user().username;
-    }
+  data: function(){
+    var orderQuery = PlexCustomers.find({});
+
+    return {
+      hasOrders: function(){
+        // return cursor count
+        return orderQuery.count();
+      },
+      orders: function(){
+        return orderQuery;
+      },
+      currentUsername: function(){
+        return Meteor.user().username;
+      }
+    };
   },
   onAfterAction: function () {
-    Meta.setTitle('Dashboard');
+    Meta.setTitle('Orders');
   }
 });
 
