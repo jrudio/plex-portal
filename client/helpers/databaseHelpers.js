@@ -28,3 +28,11 @@ Template.registerHelper('convertAccessType', function(accessType){
 Template.registerHelper('rateToDollar', function(rate) {
   return rate / 100;
 });
+
+Template.registerHelper('purchased', function(_id){
+  check(_id, String);
+  // Return a boolean
+  var currentUser = Meteor.userId();
+  var currentServer = PlexCustomers.find({ $and: [{ userId: currentUser }, {serverId: _id}, { paymentSuccess: true }] }, { fields: { _id: 1 }});
+  return currentServer.count() ? true : false;
+});
