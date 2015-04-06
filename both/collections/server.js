@@ -1,22 +1,21 @@
 Servers = new Mongo.Collection('servers');
 
-Servers.helpers({
-  toDollar: function(){
-    var rate = this;
-    return rate / 100;
-  }
-});
-
 var serversSchema = new SimpleSchema({
   createdAt: {
     type: Date,
     label: 'Keep track of time when server is posted',
     optional: true
   },
+  serverOwnerId: {
+    type: String,
+    label: 'Server Owner ID',
+    min: 17,
+    optional: true
+  },
   serverOwner: {
     type: String,
-    label: 'ID of server owner',
-    min: 17,
+    label: 'Server Owner\'s Name',
+    min: 3,
     optional: true
   },
   available: {
@@ -71,8 +70,11 @@ Servers.before.insert(function (userId, doc) {
   doc.rate = doc.rate;
 
   if(userId){
-    doc.serverOwner = userId;
+    doc.serverOwnerId = userId;
   };
+
+  // Add current username
+  doc.serverOwner = userId ? Meteor.users.findOne({ _id: userId }, { fields: { username: 1 }}).username : Fake.user().name;
 
   doc.serverName = doc.serverName.toLowerCase();
   doc.postTitle = encodeURIComponent(doc.postTitle);

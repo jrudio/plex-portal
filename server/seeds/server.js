@@ -3,7 +3,7 @@ Meteor.startup(function(){
     createdAt: function(){
       return moment.utc().toDate();
     },
-    serverOwner: function(){
+    serverOwnerId: function(){
       return Random.id();
     },
     available: function(){
